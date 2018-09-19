@@ -17,10 +17,10 @@
     // Define Hooks
 
     protected $_hooks = array(
-        'install',
+	'install',
         'uninstall',
-	'admin_footer',
-	'define_routes'
+        'admin_footer',
+        'define_routes'
 	);
 	
     public function hookInstall()
@@ -53,9 +53,9 @@
         $collectionId = metadata($collection, 'id');
         if ($interview_accession == NULL && $collectionId !== NULL) {
         $proj = metadata($collection, array('Dublin Core', 'Source'));
-	$curYear = date('Y');
-	$abrev = "oh";
-	$items = get_records('Item', array(), 30000);
+        $curYear = date('Y');
+        $abrev = "oh";
+        $items = get_records('Item', array(), 30000);
         $all_accessions = array();
 	    
 	    set_loop_records('items', $items);
