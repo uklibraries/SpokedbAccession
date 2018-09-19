@@ -17,7 +17,7 @@
     // Define Hooks
 
     protected $_hooks = array(
-	'install',
+        'install',
         'uninstall',
         'admin_footer',
         'define_routes'
