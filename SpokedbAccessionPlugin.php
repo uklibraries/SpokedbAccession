@@ -52,7 +52,7 @@
         $collection = get_collection_for_item();
         $collectionId = metadata($collection, 'id');
         if ($interview_accession == NULL && $collectionId !== NULL) {
-        $proj = metadata($collection, array('Dublin Core', 'Source'));
+        $proj = metadata($collection, array('Project', 'Code'));
         $curYear = date('Y');
         $abrev = "oh";
         $items = get_records('Item', array(), 30000);
