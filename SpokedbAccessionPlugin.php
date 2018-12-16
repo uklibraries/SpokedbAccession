@@ -43,7 +43,7 @@
     #
     # The interview must be assigned to a collection to get an accession
     # number.  
-    # for 2019, change line 105 from $new_accession to $new_accession2
+    # for 2019, change in line 112 from $new_accession to $new_accession2
     
     public function hookAdminFooter(){
         $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
