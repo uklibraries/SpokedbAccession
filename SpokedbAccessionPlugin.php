@@ -23,7 +23,7 @@
 		'define_routes'
 	);
 	
-	public function hookInstall()
+    public function hookInstall()
     {
       
     }
@@ -33,7 +33,7 @@
      
     }
 	
-	function hookDefineRoutes($args)
+    function hookDefineRoutes($args)
     {
     $router = $args['router'];
 
