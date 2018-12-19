@@ -117,7 +117,7 @@
        });
 
         }
-    </script>
+        </script>
     
         <?php
         } elseif (strpos($actual_link, '/items/edit/') == false) {
