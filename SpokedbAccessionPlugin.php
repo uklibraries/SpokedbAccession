@@ -85,7 +85,11 @@
 	    $numbers[] = $seqs;
 		}
 	    }
-	    $seq = (max($numbers));
+	    if (!empty($numbers)) { 
+    	    $seq = (max($numbers));
+            } else {
+            $seq = 0;
+            }
 	    $plus_one = 1;
 	    $sum_total_seq = $total_seq + $plus_one;
 	    $sum_total_seq = str_pad($sum_total_seq,3,"0",STR_PAD_LEFT);
