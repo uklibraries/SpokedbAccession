@@ -1,5 +1,5 @@
 # SpokedbAccession
-Creates valid SPOKEdb accession numbers for interviews and auto-fills the Interview Accession field.
+Mints valid SPOKEdb accession numbers for interviews and auto-fills the Interview Accession field.
 
 ## Accession Format
 
