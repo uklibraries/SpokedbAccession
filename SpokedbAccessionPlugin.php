@@ -3,7 +3,7 @@
  * SpokedbAccession
  * 
  * @copyright Copyright 2018 Eric C. Weig 
- * @license http://opensource.org/licenses/MIT MIT
+ * @license GNU General Public License v3.0
  */
 
 /**
