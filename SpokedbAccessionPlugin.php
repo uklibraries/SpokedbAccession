@@ -78,11 +78,11 @@
 	    }
 //    	$total_seq = (max($numof));
     	
-    	if (!empty($numof)) { 
-    	$total_seq = (max($numof));
-        } else {
-        $total_seq = 0;
-        }
+    	    if (!empty($numof)) { 
+    	    $total_seq = (max($numof));
+            } else {
+            $total_seq = 0;
+            }
     	
 	    $numbers = array();
 	    
@@ -95,10 +95,10 @@
 //	    $seq = (max($numbers));
 
 	    if (!empty($numbers)) { 
-    	$seq = (max($numbers));
-        } else {
-        $seq = 0;
-        }
+    	    $seq = (max($numbers));
+            } else {
+            $seq = 0;
+            }
 
 	    $plus_one = 1;
 	    $sum_total_seq = $total_seq + $plus_one;
@@ -110,11 +110,11 @@
 	    $oh = "oh";
 	    $div = "_";
 //	    $new_accession2 = $curYear . $oh . $sum_total_seq . $div . $proj . $sum_seq;
-        $new_accession = $curYear . $oh . $sum_total_seq . $div . $proj . $sum_seq;
-        } else { 
-        $new_accession = "";
+            $new_accession = $curYear . $oh . $sum_total_seq . $div . $proj . $sum_seq;
+            } else { 
+            $new_accession = "";
 //        $new_accession2 = "";
-        }
+            }
         
     	?>
     	<script>
