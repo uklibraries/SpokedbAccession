@@ -43,7 +43,10 @@
     #
     # The interview must be assigned to a collection to get an accession
     # number.  
-    # for 2019, change line 105 from $new_accession to $new_accession2
+    #
+    # Accession Format:
+    # YYYY+oh+4digitaccessionforyear+_+projectcode+4digitaccessionforproject
+    # Example: 2019oh0001_dab0001
     
     public function hookAdminFooter(){
         $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
