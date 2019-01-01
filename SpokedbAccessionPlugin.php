@@ -23,7 +23,7 @@
 		'define_routes'
 	);
 	
-    public function hookInstall()
+	public function hookInstall()
     {
       
     }
@@ -33,7 +33,7 @@
      
     }
 	
-    function hookDefineRoutes($args)
+	function hookDefineRoutes($args)
     {
     $router = $args['router'];
 
@@ -43,7 +43,7 @@
     #
     # The interview must be assigned to a collection to get an accession
     # number.  
-    # for 2019, change in line 112 from $new_accession to $new_accession2
+    # for 2019, change line 105 from $new_accession to $new_accession2
     
     public function hookAdminFooter(){
         $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
@@ -76,7 +76,14 @@
 	    $numof[] = $digits;
 		}
 	    }
+//    	$total_seq = (max($numof));
+    	
+    	if (!empty($numof)) { 
     	$total_seq = (max($numof));
+        } else {
+        $total_seq = 0;
+        }
+    	
 	    $numbers = array();
 	    
 	    foreach($accessions as $accession) {
@@ -85,25 +92,28 @@
 	    $numbers[] = $seqs;
 		}
 	    }
+//	    $seq = (max($numbers));
+
 	    if (!empty($numbers)) { 
-    	    $seq = (max($numbers));
-            } else {
-            $seq = 0;
-            }
+    	$seq = (max($numbers));
+        } else {
+        $seq = 0;
+        }
+
 	    $plus_one = 1;
 	    $sum_total_seq = $total_seq + $plus_one;
-	    $sum_total_seq = str_pad($sum_total_seq,3,"0",STR_PAD_LEFT);
-	    $sum_total_seq2 = str_pad($sum_total_seq,4,"0",STR_PAD_LEFT);
+//	    $sum_total_seq2 = str_pad($sum_total_seq,3,"0",STR_PAD_LEFT);
+	    $sum_total_seq = str_pad($sum_total_seq,4,"0",STR_PAD_LEFT);
 	    $sum_seq = $seq + $plus_one;
-	    $sum_seq = str_pad($sum_seq,3,"0",STR_PAD_LEFT);
-	    $sum_seq2 = str_pad($sum_seq,4,"0",STR_PAD_LEFT);
+//	    $sum_seq2 = str_pad($sum_seq,3,"0",STR_PAD_LEFT);
+	    $sum_seq = str_pad($sum_seq,4,"0",STR_PAD_LEFT);
 	    $oh = "oh";
 	    $div = "_";
-	    $new_accession = $curYear . $oh . $sum_total_seq . $div . $proj . $sum_seq;
-        $new_accession2 = $curYear . $oh . $sum_total_seq2 . $div . $proj . $sum_seq2;
+//	    $new_accession2 = $curYear . $oh . $sum_total_seq . $div . $proj . $sum_seq;
+        $new_accession = $curYear . $oh . $sum_total_seq . $div . $proj . $sum_seq;
         } else { 
         $new_accession = "";
-        $new_accession2 = "";
+//        $new_accession2 = "";
         }
         
     	?>
@@ -117,7 +127,7 @@
        });
 
         }
-        </script>
+    </script>
     
         <?php
         } elseif (strpos($actual_link, '/items/edit/') == false) {
@@ -126,3 +136,4 @@
     
     }
 }
+
