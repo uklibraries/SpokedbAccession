@@ -79,7 +79,6 @@
 	    $numof[] = $digits;
 		}
 	    }
-//    	$total_seq = (max($numof));
     	
     	    if (!empty($numof)) { 
     	    $total_seq = (max($numof));
@@ -95,7 +94,6 @@
 	    $numbers[] = $seqs;
 		}
 	    }
-//	    $seq = (max($numbers));
 
 	    if (!empty($numbers)) { 
     	    $seq = (max($numbers));
@@ -105,18 +103,14 @@
 
 	    $plus_one = 1;
 	    $sum_total_seq = $total_seq + $plus_one;
-//	    $sum_total_seq2 = str_pad($sum_total_seq,3,"0",STR_PAD_LEFT);
 	    $sum_total_seq = str_pad($sum_total_seq,4,"0",STR_PAD_LEFT);
 	    $sum_seq = $seq + $plus_one;
-//	    $sum_seq2 = str_pad($sum_seq,3,"0",STR_PAD_LEFT);
 	    $sum_seq = str_pad($sum_seq,4,"0",STR_PAD_LEFT);
 	    $oh = "oh";
 	    $div = "_";
-//	    $new_accession2 = $curYear . $oh . $sum_total_seq . $div . $proj . $sum_seq;
             $new_accession = $curYear . $oh . $sum_total_seq . $div . $proj . $sum_seq;
             } else { 
             $new_accession = "";
-//        $new_accession2 = "";
             }
         
     	?>
@@ -127,10 +121,10 @@
         } else  {
         window.addEventListener('load', function() {
         document.getElementById("Elements-252-0-text").value = "<?php echo $new_accession; // HTML ?>";
-       });
+        });
 
         }
-    </script>
+        </script>
     
         <?php
         } elseif (strpos($actual_link, '/items/edit/') == false) {
