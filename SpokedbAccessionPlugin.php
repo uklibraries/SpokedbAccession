@@ -39,7 +39,7 @@
 
     }
 	
-    # To ensure that interviews get an accession number, the interview
+    # To ensure that an interview gets an accession number, the interview
     # must be assigned to a collection first.  The collection must 
     # have a project code assigned.
     #	  
