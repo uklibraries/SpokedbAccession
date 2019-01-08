@@ -3,7 +3,7 @@
  * SpokedbAccession
  * 
  * @copyright Copyright 2018 Eric C. Weig 
- * @license GNU General Public License v3.0
+ * @license http://opensource.org/licenses/MIT MIT
  */
 
 /**
@@ -19,11 +19,11 @@
     protected $_hooks = array(
         'install',
         'uninstall',
-	'admin_footer',
-	'define_routes'
+		'admin_footer',
+		'define_routes'
 	);
 	
-	public function hookInstall()
+    public function hookInstall()
     {
       
     }
@@ -33,19 +33,16 @@
      
     }
 	
-	function hookDefineRoutes($args)
+    function hookDefineRoutes($args)
     {
     $router = $args['router'];
 
     }
 	
-    # To ensure that an interview gets an accession number, the interview
-    # must be assigned to a collection first.  The collection must 
-    # have a project code assigned.
-    #	  
-    # Accession Number Format:
-    # YYYY+oh+4digitaccessionforyear+_+projectcode+4digitaccessionforproject
-    # Example Accession Number: 2019oh0001_dab0001
+    # Ensure that interviews have an accession number.
+    #
+    # The interview must be assigned to a collection to get an accession
+    # number.  
     
     public function hookAdminFooter(){
         $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
@@ -55,13 +52,14 @@
         $collection = get_collection_for_item();
         if ($collection) {
         $collectionId = metadata($collection, 'id');
+        $nitems = metadata($collection, 'total items');
         }
         if ($interview_accession == NULL && $collectionId !== NULL) {
-        $proj = metadata($collection, array('Project', 'Project Code'));
+            $proj = metadata($collection, array('Project', 'Project Code'));
 	    $curYear = date('Y');
 	    $abrev = "oh";
 	    $items = get_records('Item', array(), 30000);
-        $all_accessions = array();
+            $all_accessions = array();
 	    
 	    set_loop_records('items', $items);
 	    foreach (loop('items') as $item): 
@@ -74,7 +72,9 @@
 	    foreach($accessions as $accession) {
 	    if (strpos($accession, $curYear) !== false) {
 	    $totalints = substr($accession, 0, 9);
-	    $digits = substr($totalints, -3); 
+	    $totalints = strtok($accession, '_');
+	    $digits = substr($totalints, -3);
+	    $digits = substr($totalints, 6);
 	    $numof[] = $digits;
 		}
 	    }
@@ -89,7 +89,9 @@
 	    
 	    foreach($accessions as $accession) {
 	    if (strpos($accession, $proj) !== false) {
-	    $seqs = substr($accession, -3);
+	    $arrseqs = explode("_", $accession);
+            $seqs = $arrseqs[1];
+	    $seqs = str_replace("$proj","","$seqs");
 	    $numbers[] = $seqs;
 		}
 	    }
@@ -120,10 +122,10 @@
         } else  {
         window.addEventListener('load', function() {
         document.getElementById("Elements-252-0-text").value = "<?php echo $new_accession; // HTML ?>";
-        });
+       });
 
         }
-        </script>
+       </script>
     
         <?php
         } elseif (strpos($actual_link, '/items/edit/') == false) {
@@ -132,4 +134,3 @@
     
     }
 }
-
