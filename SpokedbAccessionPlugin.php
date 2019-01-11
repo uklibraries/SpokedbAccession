@@ -19,8 +19,8 @@
     protected $_hooks = array(
         'install',
         'uninstall',
-		'admin_footer',
-		'define_routes'
+	'admin_footer',
+	'define_routes'
 	);
 	
     public function hookInstall()
