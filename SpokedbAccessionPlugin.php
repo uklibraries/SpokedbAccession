@@ -58,6 +58,8 @@
             $proj = metadata($collection, array('Project', 'Project Code'));
 	    $curYear = date('Y');
 	    $abrev = "oh";
+	    settype($numvar,'integer');
+	    $proj_test = "_" . $proj . $numvar;
 	    $items = get_records('Item', array(), 30000);
             $all_accessions = array();
 	    
@@ -88,7 +90,7 @@
 	    $numbers = array();
 	    
 	    foreach($accessions as $accession) {
-	    if (strpos($accession, $proj) !== false) {
+	    if (strpos($accession, $proj_test) !== false) {
 	    $arrseqs = explode("_", $accession);
             $seqs = $arrseqs[1];
 	    $seqs = str_replace("$proj","","$seqs");
