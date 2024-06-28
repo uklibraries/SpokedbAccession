@@ -19,11 +19,11 @@
     protected $_hooks = array(
         'install',
         'uninstall',
-	'admin_footer',
-	'define_routes'
+		'admin_footer',
+		'define_routes'
 	);
 	
-    public function hookInstall()
+	public function hookInstall()
     {
       
     }
@@ -33,7 +33,7 @@
      
     }
 	
-    function hookDefineRoutes($args)
+	function hookDefineRoutes($args)
     {
     $router = $args['router'];
 
@@ -55,13 +55,20 @@
         $nitems = metadata($collection, 'total items');
         }
         if ($interview_accession == NULL && $collectionId !== NULL) {
-            $proj = metadata($collection, array('Project', 'Project Code'));
+        $proj = metadata($collection, array('Project', 'Project Code'));
 	    $curYear = date('Y');
 	    $abrev = "oh";
-	    settype($numvar,'integer');
+	    
+	    // updated $numvar to string... --bd 02.26.24
+	    // Accession string format: 
+	    // YYYY + oh + 4digitaccessionforyear + _ + projectcode + 4digitaccessionforproject
+	    // ...enabling 4digitaccessionforproject to be incremented  
+	    // settype($numvar,'integer');
+	    $numvar = "";
+
 	    $proj_test = "_" . $proj . $numvar;
 	    $items = get_records('Item', array(), 30000);
-            $all_accessions = array();
+        $all_accessions = array();
 	    
 	    set_loop_records('items', $items);
 	    foreach (loop('items') as $item): 
@@ -81,28 +88,28 @@
 		}
 	    }
     	
-    	    if (!empty($numof)) { 
-    	    $total_seq = (max($numof));
-            } else {
-            $total_seq = 0;
-            }
+    	if (!empty($numof)) { 
+    	$total_seq = (max($numof));
+        } else {
+        $total_seq = 0;
+        }
     	
 	    $numbers = array();
 	    
 	    foreach($accessions as $accession) {
 	    if (strpos($accession, $proj_test) !== false) {
 	    $arrseqs = explode("_", $accession);
-            $seqs = $arrseqs[1];
+        $seqs = $arrseqs[1];
 	    $seqs = str_replace("$proj","","$seqs");
 	    $numbers[] = $seqs;
 		}
 	    }
 
 	    if (!empty($numbers)) { 
-    	    $seq = (max($numbers));
-            } else {
-            $seq = 0;
-            }
+    	$seq = (max($numbers));
+        } else {
+        $seq = 0;
+        }
 
 	    $plus_one = 1;
 	    $sum_total_seq = $total_seq + $plus_one;
@@ -111,10 +118,10 @@
 	    $sum_seq = str_pad($sum_seq,4,"0",STR_PAD_LEFT);
 	    $oh = "oh";
 	    $div = "_";
-            $new_accession = $curYear . $oh . $sum_total_seq . $div . $proj . $sum_seq;
-            } else { 
-            $new_accession = "";
-            }
+        $new_accession = $curYear . $oh . $sum_total_seq . $div . $proj . $sum_seq;
+        } else { 
+        $new_accession = "";
+        }
         
     	?>
     	<script>
